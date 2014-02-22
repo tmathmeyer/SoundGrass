@@ -117,7 +117,6 @@ window.addEventListener("DOMContentLoaded", function(){
 	socket.on('get station names', function(data){
 		console.log(data);
 	});
-    clear_dropdown();
 	pauseClick();
 	document.getElementById("play").addEventListener("click", playClick);
 	document.getElementById("pause").addEventListener("click", pauseClick);

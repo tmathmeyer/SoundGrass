@@ -42,3 +42,5 @@ render_grid = function(stations){
 function clear_dropdown(){
 	filter_stations();
 }
+
+	window.addEventListener("load", function(){clear_dropdown();});
