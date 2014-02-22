@@ -10,17 +10,7 @@ stations = {
     }
 };
 
-exports.createStation = function(req, res){
 
-});
-
-app.get('/stations/list', function(req, res){
-    res.send(JSON.stringify(stations));
-});
-
-app.get('/stations', function(req, res){
-
-});
     
 
 
@@ -29,8 +19,13 @@ exports.handle = function(socket){
 		socket.emit('get stations', stations);
 	});
 
-	socket.on('create station'. function(data){
-		
+	socket.on('create station', function(data){
+		if (stations[data.stationName]){
+			socket.emit('error', {"error_in":"create station"});
+		} else {
+			stations[data.stationName] = data.stationData;
+			socket.emit('success', {"success_in":"create station"});
+		}
 	});
 
 
