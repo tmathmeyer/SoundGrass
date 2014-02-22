@@ -5,6 +5,7 @@ var songnum = 0;
 var socket;
 var latency;
 var offset;
+var tmp = 0;
 function playable()
 {
 	info++;
@@ -16,10 +17,11 @@ function playable()
 function updatethetime()
 {
 	var progress = document.querySelector("progress");
-	progress.value = audio.currentTime / audio.duration * 100;
 
-	if (progress.value == 100){
+	tmp = audio.currentTime / audio.duration * 100;
 
+	if (!isNaN(tmp)){ // NaN
+		progress.value = tmp;
 	}
 
 }
@@ -27,10 +29,8 @@ function updatethetime()
 function songended()
 {
 	songnum++;
-	var songloc = '/file';//+songnum;
-	audio.children[0].src = songloc + ".opus";
-	audio.children[1].src = songloc + ".ogg";
-	audio.children[2].src = songloc + ".mp3";
+	var songloc = '/Jump';//+songnum;
+	audio.children[0].src = songloc + ".wav";
 
 	socket.emit('next song', {room_name: location.pathname});
 	info = 1;
