@@ -4,6 +4,7 @@ player_station = {};
 
 exports.handle = function(socket, io){
 	socket.on("player join room", function(data){
+		socket.join(data.room_name);
 		if (player_station[data.room_name]){
 			player_station[data.room_name].count++;
 		}else{
@@ -18,7 +19,7 @@ exports.handle = function(socket, io){
 			
 			if (player_station[data.room_name].count == player_station[data.room_name].ready){
 				io.sockets.in(data.room_name).emit('players', { time: data.time, 
-																play: data.play,
+																play: true,
 															 	stime: new Date() });
 			}
 		}

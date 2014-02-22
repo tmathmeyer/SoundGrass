@@ -20,7 +20,6 @@ window.addEventListener("DOMContentLoaded", function(){
 	
 	socket.on('connect', function () {
 		socket.emit('player join room', {'room_name': location.pathname});
-		socket.join(location.pathname);
 		playable();
 	});
 
