@@ -52,6 +52,7 @@ body {
     font-size: 20px;
     height: 40px;
     padding: 0;
+	margin: 0;
 }
 
 #presse:hover, li:hover {
@@ -82,13 +83,12 @@ input {
 li {
     border-bottom: 1px solid #FFFFFF;
     cursor: pointer;
-    font-size: 32px;
+    font-size: 24px;
     height: 40px;
     left: 0;
     line-height: 40px;
     list-style-type: none;
     text-align: left;
-    width: 100%;
 	padding: 0 0.3em;
 }
 
@@ -147,6 +147,7 @@ li {
 	#inpute {
 		border: 1px solid #4968EF;
 		border-width: 0 1px 1px 0;
+		color: #4968EF;
 	}
 
 	#presse {
