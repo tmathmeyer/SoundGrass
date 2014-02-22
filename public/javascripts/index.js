@@ -88,16 +88,19 @@ window.addEventListener("DOMContentLoaded", function(){
 	var audio = document.querySelector("audio");
 	// testing
 	window.audio = audio;
+	
+	audio.load();
 
-
-	audio.addEventListener("canplaythrough", playable);
-	audio.addEventListener("timeupdate", updatethetime);
-	audio.addEventListener("ended",songended);
+	audio.addEventListener("canplay", playable, true);
+	audio.addEventListener("timeupdate", updatethetime, true);
+	audio.addEventListener("ended",songended, true);
 
 	socket = io.connect(location.origin);
 
 	socket.on('connect', function () {
 		socket.emit('player join room', {'room_name': location.pathname});
+		audio.play();
+		audio.pause();
 		playable();
 	});
 	

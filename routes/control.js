@@ -23,7 +23,7 @@ exports.handle = function(socket, io){
 				if (!radiostation.playing &&
 					radiostation.count == radiostation.ready){
 					
-					console.info(radiostation.playing + ' ' + radiostation.count + ' '+  radiostation.ready);
+					console.info(radiostation.playing + ' zz ' + radiostation.count + ' '+  radiostation.ready);
 					radiostation.playing = true;
 					io.sockets.in(data.room_name).emit('players', { time: data.time, 
 			play: true,
@@ -31,6 +31,7 @@ exports.handle = function(socket, io){
 			}
 			else{
 				console.info("no no");
+				console.info(radiostation.playing + ' ' + radiostation.count + ' '+  radiostation.ready);
 			}
 			},10000);
 			
