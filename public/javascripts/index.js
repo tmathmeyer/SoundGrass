@@ -17,9 +17,9 @@ function updatethetime()
 {
 	var progress = document.querySelector("progress");
 	progress.value = audio.currentTime / audio.duration * 100;
-	
+
 	if (progress.value == 100){
-		
+
 	}
 
 }
@@ -31,11 +31,11 @@ function songended()
 	audio.children[0].src = songloc + ".opus";
 	audio.children[1].src = songloc + ".ogg";
 	audio.children[2].src = songloc + ".mp3";
-		
+
 	socket.emit('next song', {room_name: location.pathname});
 	info = 1;
 	window.audio = audio;
-	
+
 	audio.load();
 }
 
@@ -88,7 +88,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	audio.addEventListener("canplaythrough", playable);
 	audio.addEventListener("timeupdate", updatethetime);
 	audio.addEventListener("ended",songended);
-	
+
 	socket = io.connect(location.origin);
 
 	socket.on('connect', function () {
@@ -120,4 +120,14 @@ window.addEventListener("DOMContentLoaded", function(){
 	pauseClick();
 	document.getElementById("play").addEventListener("click", playClick);
 	document.getElementById("pause").addEventListener("click", pauseClick);
+	document.addEventListener("keyup", function(e){
+
+		if (e.keyCode == 32)
+			{
+				if (!audio.volume)
+					playClick();
+				else
+					pauseClick();
+			}
+	});
 });
