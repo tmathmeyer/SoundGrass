@@ -22,6 +22,7 @@ window.addEventListener("DOMContentLoaded", function(){
 
 	socket.on('players', function (msg) {
 		console.info("yay", msg);
+		console.log("FUCK");
 		if (msg.time)
 			audio.currentTime = msg.time;
 		if (msg.play)
