@@ -12,7 +12,6 @@ var path = require('path');
 var stations = require('./routes/stations');
 var control = require('./routes/control');
 
-
 var app = express();
 
 // all environments

@@ -38,6 +38,8 @@ exports.handle = function(socket, io){
 			stations[data.stationName] = data.stationData;
 			socket.emit('success', {"success_in":"create station"});
 		}
+		
+		
 	});
 
 	socket.on('add song to station', function(data){
@@ -52,7 +54,7 @@ exports.handle = function(socket, io){
 	socket.on('join station', function(data){
 		if (stations[data.stationName]){
 			stations[data.stationName].count++;
-			socket.emit('success', {'success_in':'joining station'});
+			socket.emit('join station', {'success_in':'station/'+data.stationName});
 		}else{
 			socket.emit('error', {'error_in':'joining station'});
 		}
