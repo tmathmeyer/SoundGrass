@@ -21,7 +21,7 @@
 	<body>
 		<div id = "menu">
 			<input type="text"   id="inpute" placeholder = "Enter Station" onkeyup="filter_stations()" autocorrect="off" onclick="clear_dropdown();" >
-			<input type="button" id="presse" value = "GO" onclick="add_station();"> 
+			<input type="button" id="presse" value = "GO" onclick="joinExact();"> 
 		</div>
 		<div id = "table">
 
@@ -35,15 +35,31 @@
 
 			socket = io.connect(location.href);
 			
-			add_station = function(){
-				var stationinfo = {'stationName' : 'john',
-									'stationData' : {
-									'count' : 0,
-									'owner' : 'test1',
-									'playlist' : []
-									}}
+			joinStation = function(stationname){
+				var stationinfo = {
+					'stationName' : stationname,
+					'stationData' : {
+						'count' : 0,
+						'owner' : 'test1',
+						'playlist' : []
+					}
+				};
+
 				socket.emit('create station', stationinfo);
 				socket.emit('join station', stationinfo);
+			}
+
+			socket.on('join station', function(data){
+				console.log(data);
+			});
+
+			socket.on('error', function(data){
+				console.log("ERROR");
+				console.log(data);
+			});
+
+			joinExact = function(){
+				joinStation(document.getElementById("inpute").value);
 			}
 
 		</script>
