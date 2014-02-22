@@ -32,6 +32,5 @@ render_grid = function(stations){
 }
 
 clear_dropdown = function(){
-	document.getElementById("inpute").placeholder = "";
 	filter_stations();
 }
