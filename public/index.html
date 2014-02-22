@@ -1,0 +1,68 @@
+<html>
+
+	<head>
+		<title>
+			soundgrass 420 blazeit
+		</title>
+
+		<link href="stylesheets/style.css" rel="stylesheet">
+		<script src="javascripts/nonbounce.js"></script>
+		<script src="javascripts/pagescripts.js"></script>
+		<script src="/socket.io/socket.io.js.js"></script>
+
+		<meta name="viewport" content="width=device-width, user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-touch-fullscreen" content="yes" />
+		<meta name="HandheldFriendly" content="True">
+
+		
+	</head>
+
+	<body>
+		<div id = "menu">
+			<input type="text"   id="inpute" placeholder = "Enter Station" onkeyup="filter_stations()" autocorrect="off" onclick="clear_dropdown();" >
+			<input type="button" id="presse" value = "GO" onclick="joinExact();"> 
+		</div>
+		<div id = "table">
+
+		</div>
+
+
+
+		<script>
+			nonbounce("menu");
+
+			socket = io.connect(location.origin);
+			load_stations(socket);
+			
+			joinStation = function(stationname){
+				var stationinfo = {
+					'stationName' : stationname,
+					'stationData' : {
+						'count' : 0,
+						'owner' : 'test1',
+						'playlist' : []
+					}
+				};
+
+				socket.emit('create station', stationinfo);
+				socket.emit('join station', stationinfo);
+			}
+
+			socket.on('join station', function(data){
+				window.location = data.success_in;
+			});
+
+			socket.on('error', function(data){
+				console.log("ERROR");
+				console.log(data);
+			});
+
+			joinExact = function(){
+				joinStation(document.getElementById("inpute").value);
+			}
+
+		</script>
+	</body>
+
+</html>
