@@ -72,14 +72,15 @@ window.addEventListener("DOMContentLoaded", function(){
 			syncTime();
 			offset = (stime.getHours())*3600000 + (stime.getMinutes()) * 60000 + stime.getSeconds()* 1000 + stime.getMilliseconds() + latency*3 - ((new Date()).getHours()*3600000 + (new Date()).getMinutes()*60000 + (new Date()).getSeconds()*1000 + (new Date()).getMilliseconds());
 //			offset = stime.getMilliseconds() + latency*3 - (new Date()).getMilliseconds();
-			alert("Latency: " + latency + ", offset: " + offset);
+		//	alert("Latency: " + latency + ", offset: " + offset);
+		console.log(offset);
 		}
 		if(msg.play){
 			var ptime = new Date(msg.play);
-			setTimeout(function() {audio.play(); }, ptime.getHours()*3600000 + ptime.getMinutes()*60000 + ptime.getSeconds()*1000 + ptime.getMilliseconds() - ((new Date()).getHours()*3600000 + (new Date()).getMinutes()*60000 + (new Date()).getSeconds()*1000 + (new Date()).getMilliseconds()) + offset);
+			setTimeout(function() {playClick(); audio.play(); }, ptime.getHours()*3600000 + ptime.getMinutes()*60000 + ptime.getSeconds()*1000 + ptime.getMilliseconds() - ((new Date()).getHours()*3600000 + (new Date()).getMinutes()*60000 + (new Date()).getSeconds()*1000 + (new Date()).getMilliseconds()) + offset + 5000);
 		}
 		else if (ptime === false)
-			audio.pause();
+			pauseClick();
 	});
 
 	socket.on('get station names', function(data){
