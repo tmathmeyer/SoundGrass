@@ -63,13 +63,13 @@ body {
 	 cursor: pointer;
 }
 
-#presse:hover {
+#presse:hover, li:hover {
      color: #4968EF;
      background-color: #fff;
      text-shadow: none;
 }
 
-#presse:active {
+#presse:active, li:active {
 	color: #4968EF;
 	background-image: linear-gradient(to bottom, silver, white);
 }
@@ -104,13 +104,6 @@ li {
      text-align: center;
      cursor: pointer;
 }
-
-li:active {
-     color: #4968EF;
-     background-color: #fff;
-     text-shadow: none;
-}
-
 
 ::-webkit-input-placeholder {
     color:    #fff;
