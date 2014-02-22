@@ -37,7 +37,7 @@ exports.handle = function(socket, io){
 	socket.on("next song", function(data){
 		var radiostation = player_station[data.room_name];
 	
-		if (radiostation){
+		if (radiostation && radiostation.playing){
 			radiostation.ready = 0;
 			radiostation.playing = false;
 		}
