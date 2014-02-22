@@ -36,8 +36,9 @@
 			load_stations(socket);
 
 			joinStation = function(stationname){
+				console.log(stationname.srcElement.innerText);
 				var stationinfo = {
-					'stationName' : stationname,
+					'stationName' : stationname.srcElement.innerText,
 					'stationData' : {
 						'count' : 0,
 						'owner' : 'test1',
@@ -59,7 +60,11 @@
 			});
 
 			joinExact = function(){
-				joinStation(document.getElementById("inpute").value);
+				text = document.getElementById("inpute").value;
+				if (text != ""){
+					text = {"srcElement":{"innerText":text}};
+					joinStation(text);
+				}
 			}
 
 		</script>
