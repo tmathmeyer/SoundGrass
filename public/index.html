@@ -15,13 +15,13 @@
 		<meta name="apple-touch-fullscreen" content="yes" />
 		<meta name="HandheldFriendly" content="True">
 
-		
+
 	</head>
 
 	<body>
 		<div id = "menu">
 			<input type="text"   id="inpute" placeholder = "Enter Station" onkeyup="filter_stations()" autocorrect="off" onclick="clear_dropdown();" >
-			<input type="button" id="presse" value = "GO" onclick="joinExact();"> 
+			<input type="button" id="presse" value = "GO" onclick="joinExact();">
 		</div>
 		<div id = "table">
 
@@ -34,7 +34,7 @@
 
 			socket = io.connect(location.origin);
 			load_stations(socket);
-			
+
 			joinStation = function(stationname){
 				console.log(stationname.srcElement.innerText);
 				var stationinfo = {
