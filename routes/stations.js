@@ -88,7 +88,7 @@ exports.handle = function(socket, io){
 			stations[stationName].count++;
 			socket.emit('join station', {'go_to':'station/'+stationName});
 		}else{
-			socket.emit('error', {'error_in':'joining station'});
+			socket.emit('station exist', {'error_in':'joining station'});
 		}
 	
 	});
