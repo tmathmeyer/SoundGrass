@@ -31,8 +31,7 @@ if ('development' == app.get('env')) {
 	app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
-app.get('/station/:id', routes.index);
+app.get('/station/:id', routes.station);
 app.get('/users', user.list);
 
 var server = http.createServer(app);
