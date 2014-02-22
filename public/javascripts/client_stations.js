@@ -1,24 +1,18 @@
 MockData = {
-	'stationName':'name1'
+	'stationName':'name1',
 	'stationData':{
 		"owner":"john",
 		"playlist":[]
 	}
 }
 
+//socket = io.connect('http://localhost');
+socket = {};
 
-exports.handle = function(socket){
-	socket.emit('create station', MockData);
+show_stations = function(){
 	socket.emit('get stations');
 	
 	socket.on('get stations', function(data){
-		if (data[0]){
-			socket.emit('create station', MockData);
-		} else {
-			socket.emit('sucesss', {"success_in":"retrieving stations"});
-		}
+		document.getElementById("fuckers").html(JSON.stringify(data));
 	});
-
-
-
 }

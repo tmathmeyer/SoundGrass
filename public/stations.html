@@ -1,0 +1,30 @@
+<html>
+
+	<head>
+		<script src="/javascripts/client_stations.js"></script>
+		<script src="/socket.io/socket.io.js.js"></script>
+	</head>
+
+	<body>
+		<button onclick="show_stations();">show stations</button>
+		<button onclick="show_stations();">add stations</button>
+
+
+		<div id = "fuckers">
+
+		</div>
+
+
+
+		<script>
+			socket = io.connect('http://localhost');
+			show_stations = function(){
+				socket.emit('get stations');
+				
+				socket.on('get stations', function(data){
+					document.getElementById("fuckers").textContent = JSON.stringify(data);
+				});
+			}
+		</script>
+	</body>
+</html>
