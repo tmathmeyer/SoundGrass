@@ -105,9 +105,6 @@ window.addEventListener("DOMContentLoaded", function(){
 			syncTime();
 		}
 		if(msg.play){
-		latency += audio.currentSrc.endsWith("opus") ? 10 : 0;
-		latency += audio.currentSrc.endsWith("mp3") ? 250 : 0;
-		latency += audio.currentSrc.endsWith("ogg") ? 200 : 0;
 		setTimeout(function() { audio.play(); playClick(); }, 5000 - latency);
 		}
 		else if (ptime === false)
