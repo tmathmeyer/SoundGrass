@@ -24,7 +24,6 @@ MockData = {
 
 
 exports.handle = function(socket, io){
-	var ss = socket;
 
 	socket.on('get stations', function(data){
 		socket.emit('get stations', stations);
@@ -46,11 +45,6 @@ exports.handle = function(socket, io){
 		} else {
 			socket.emit('error', {"error_in":"add song to station"});
 		}
-	});
-
-	socket.on("players", function(data) {
-		// { ready: true }
-		io.sockets.emit('players', { time: data.time, play: data.play });
 	});
 
 }

@@ -10,6 +10,7 @@ var http = require('http');
 var path = require('path');
 
 var stations = require('./routes/stations');
+var control = require('./routes/control');
 
 
 var app = express();
@@ -47,6 +48,7 @@ io.sockets.on('connection', function (socket) {
 		console.log("away", data);
 	});
 
-	stations.handle(socket, io);
+	stations.handle(socket);
+	control.handle(socket, io);
 });
 
