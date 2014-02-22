@@ -16,7 +16,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	// testing
 	window.audio = audio;
 	audio.addEventListener("canplaythrough", playable);
-	socket = io.connect(location.href);
+	socket = io.connect(location.origin);
 	
 	socket.on('connect', function () {
 		socket.emit('player join room', {'room_name': location.pathname});
@@ -26,12 +26,15 @@ window.addEventListener("DOMContentLoaded", function(){
 
 	socket.on('players', function (msg) {
 		console.info("yay", msg);
-		console.log("FUCK");
 		if (msg.time)
 			audio.currentTime = msg.time;
 		if (msg.play)
 			audio.play();
 		else if (msg.play === false)
 			audio.pause();
+	});
+
+	socket.on('get station names', function(data){
+		console.log(data);
 	});
 });

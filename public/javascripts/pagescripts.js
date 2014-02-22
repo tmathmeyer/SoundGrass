@@ -1,7 +1,12 @@
 stations = [];
 
-load_stations = function(){
-	stations = ["abra", "absynth", "abacus", "abacore", "abstinance", "azeroth", "station1", "alsa", "pulseaudio", "fuck", "flubber", "slock", "slinkies"];
+load_stations = function(socket){
+	//stations = ["abra", "absynth", "abacus", "abacore", "abstinance", "azeroth", "station1", "alsa", "pulseaudio", "fuck", "flubber", "slock", "slinkies"];
+	socket.emit('get station names', null);
+	socket.on('get station names', function(data){
+		console.log(data);
+		stations = data;
+	});
 }
 
 filter_stations = function(){
