@@ -11,7 +11,7 @@ stations = {
 };
 
 
-    
+
 
 
 exports.handle = function(socket){
@@ -28,6 +28,8 @@ exports.handle = function(socket){
 		}
 	});
 
-
+	socket.on("players", function(data) {
+		// { ready: true }
+	});
 
 }
