@@ -39,8 +39,8 @@
 			}
 			
 			socket.on('join station', function(data){
-				window.location = data.stationLocation;
-			
+				window.location = data.go_to;
+				socket.join(data.go_to);
 			});
 			
 			window.addEventListener("DOMContentLoaded", show_stations);

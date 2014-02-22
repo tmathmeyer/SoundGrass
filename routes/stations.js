@@ -86,8 +86,7 @@ exports.handle = function(socket, io){
 		var stationName = data.stationName.toLowerCase();
 		if (stations[stationName]){
 			stations[stationName].count++;
-			socket.emit('join station', {'go_to':'station/'+stationName,
-										 'room_name':stationName});
+			socket.emit('join station', {'go_to':'station/'+stationName});
 		}else{
 			socket.emit('error', {'error_in':'joining station'});
 		}
