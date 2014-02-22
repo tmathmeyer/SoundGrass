@@ -25,10 +25,11 @@ exports.handle = function(socket, io){
 	
 					radiostation.playing = true;
 					io.sockets.in(data.room_name).emit('players', { time: data.time, 
-																	play: true,
-																	stime: new Date() });
-				}
+			play: true,
+			stime: false });
+			}
 			},30000);
+//			setTimeout(function(){ io.sockets.in(data.room_name).emit('players', {
 			
 		}
 		

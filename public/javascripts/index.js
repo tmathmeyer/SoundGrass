@@ -44,10 +44,11 @@ function syncTime() {
     r.onreadystatechange = function()
     {
         if (r.readyState != 4)
-        {
             return;
-        }
-        latency = ((new Date).getTime() - start)/2;
+	if(!latency)
+	        latency = ((new Date).getTime() - start)/2;
+	else
+		latency = (((new Date).getTime() - start)/2)*0.75 + 0.25*latency;
         var timestring = r.getResponseHeader("DATE");
 
         // Set the time to the **slightly old** date sent from the 
@@ -82,14 +83,8 @@ window.addEventListener("DOMContentLoaded", function(){
 		if(msg.stime){
 			var stime = new Date(msg.stime);
 			syncTime();
-//			offset = (stime.getHours())*3600000 + (stime.getMinutes()) * 60000 + stime.getSeconds()* 1000 + stime.getMilliseconds() + latency*3 - ((new Date()).getHours()*3600000 + (new Date()).getMinutes()*60000 + (new Date()).getSeconds()*1000 + (new Date()).getMilliseconds());
-//			offset = stime.getMilliseconds() + latency*3 - (new Date()).getMilliseconds();
-		//	alert("Latency: " + latency + ", offset: " + offset);
-		console.log(offset);
 		}
 		if(msg.play){
-//			var ptime = new Date(msg.play);
-//			setTimeout(function() {playClick(); audio.play(); }, ptime.getHours()*3600000 + ptime.getMinutes()*60000 + ptime.getSeconds()*1000 + ptime.getMilliseconds() - ((new Date()).getHours()*3600000 + (new Date()).getMinutes()*60000 + (new Date()).getSeconds()*1000 + (new Date()).getMilliseconds()) + offset + 5000);
 		setTimeout(function() { playClick(); audio.play(); }, 5000 - latency);
 		}
 		else if (ptime === false)
