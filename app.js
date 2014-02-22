@@ -9,6 +9,9 @@ var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 
+var stations = require('./routes/stations');
+
+
 var app = express();
 
 // all environments
@@ -25,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
 if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
+	app.use(express.errorHandler());
 }
 
 app.get('/', routes.index);
@@ -33,18 +36,22 @@ app.get('/users', user.list);
 
 var server = http.createServer(app);
 server.listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+	console.log('Express server listening on port ' + app.get('port'));
 });
 
 var io = require("socket.io").listen(server);
 
 io.sockets.on('connection', function (socket) {
 	console.log("connectd", socket);
-  socket.on('message', function (data) {
-    console.log("message", data);
-  });
-  socket.on('disconnect', function (data) {
-    console.log("away", data);
-  });
+		
+	socket.on('message', function (data) {
+		console.log("message", data);
+	});
+
+	socket.on('disconnect', function (data) {
+		console.log("away", data);
+	});
+
+	stations.handle(socket);
 });
 
