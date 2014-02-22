@@ -50,7 +50,7 @@
 			}
 
 			socket.on('join station', function(data){
-				window.location = data.success_in;
+				window.location = data.go_to;
 			});
 
 			socket.on('error', function(data){
