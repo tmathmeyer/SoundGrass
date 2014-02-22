@@ -22,13 +22,17 @@ exports.handle = function(socket, io){
 			setTimeout(function(){
 				if (!radiostation.playing &&
 					radiostation.count == radiostation.ready){
-	
+					
+					console.info(radiostation.playing + ' ' + radiostation.count + ' '+  radiostation.ready);
 					radiostation.playing = true;
 					io.sockets.in(data.room_name).emit('players', { time: data.time, 
-																	play: new Date(),
-																	stime: new Date() });
-				}
-			},30000);
+			play: true,
+			stime: false });
+			}
+			else{
+				console.info("no no");
+			}
+			},10000);
 			
 		}
 		
@@ -36,10 +40,12 @@ exports.handle = function(socket, io){
 	
 	socket.on("next song", function(data){
 		var radiostation = player_station[data.room_name];
-	
-		if (radiostation){
+		
+		console.info("reset ");
+		if (radiostation && radiostation.playing){
 			radiostation.ready = 0;
 			radiostation.playing = false;
+			io.sockets.in(data.room_name).emit('change song', {new_song: Math.random() * 10});
 		}
 	
 	});

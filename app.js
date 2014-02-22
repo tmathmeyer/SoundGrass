@@ -45,7 +45,6 @@ io.set("log level", 1);
 io.sockets.on('connection', function (socket) {
 
 	socket.on('disconnect', function (data) {
-		console.log("away", data);
 	});
 	control.handle(socket, io);
 	stations.handle(socket,io);

@@ -1,9 +1,11 @@
 "use strict";
 
 var info = 0;
+var songnum = 0;
 var socket;
 var latency;
 var offset;
+var tmp = 0;
 function playable()
 {
 	info++;
@@ -15,8 +17,31 @@ function playable()
 function updatethetime()
 {
 	var progress = document.querySelector("progress");
-	progress.value = audio.currentTime / audio.duration * 100;
 
+	tmp = audio.currentTime / audio.duration * 100;
+
+	if (!isNaN(tmp)){ // NaN
+		progress.value = tmp;
+	}
+
+}
+
+function songended()
+{
+	socket.emit('next song', {room_name: location.pathname});
+
+}
+
+function changesong(data)
+{
+	songnum++;
+	var songloc = '/Jump';//+songnum;
+	audio.children[0].src = songloc + ".wav";
+
+	info = 1;
+	window.audio = audio;
+
+	audio.load();
 }
 
 function playClick()
@@ -44,13 +69,14 @@ function syncTime() {
     r.onreadystatechange = function()
     {
         if (r.readyState != 4)
-        {
             return;
-        }
-        latency = ((new Date).getTime() - start)/2;
+	if(!latency)
+	        latency = ((new Date).getTime() - start)/2;
+	else
+		latency = (((new Date).getTime() - start)/2)*0.75 + 0.25*latency;
         var timestring = r.getResponseHeader("DATE");
 
-        // Set the time to the **slightly old** date sent from the 
+        // Set the time to the **slightly old** date sent from the
         // server, then adjust it to a good estimate of what the
         // server time is **right now**.
     };
@@ -62,18 +88,20 @@ window.addEventListener("DOMContentLoaded", function(){
 	var audio = document.querySelector("audio");
 	// testing
 	window.audio = audio;
-	
-	
+
+
 	audio.addEventListener("canplaythrough", playable);
 	audio.addEventListener("timeupdate", updatethetime);
-	
-	
+	audio.addEventListener("ended",songended);
+
 	socket = io.connect(location.origin);
 
 	socket.on('connect', function () {
 		socket.emit('player join room', {'room_name': location.pathname});
 		playable();
 	});
+	
+	socket.on('change song', changesong);
 
 	socket.on('players', function (msg) {
 		console.info("yay", msg);
@@ -82,14 +110,9 @@ window.addEventListener("DOMContentLoaded", function(){
 		if(msg.stime){
 			var stime = new Date(msg.stime);
 			syncTime();
-			offset = (stime.getHours())*3600000 + (stime.getMinutes()) * 60000 + stime.getSeconds()* 1000 + stime.getMilliseconds() + latency*3 - ((new Date()).getHours()*3600000 + (new Date()).getMinutes()*60000 + (new Date()).getSeconds()*1000 + (new Date()).getMilliseconds());
-//			offset = stime.getMilliseconds() + latency*3 - (new Date()).getMilliseconds();
-		//	alert("Latency: " + latency + ", offset: " + offset);
-		console.log(offset);
 		}
 		if(msg.play){
-			var ptime = new Date(msg.play);
-			setTimeout(function() {playClick(); audio.play(); }, ptime.getHours()*3600000 + ptime.getMinutes()*60000 + ptime.getSeconds()*1000 + ptime.getMilliseconds() - ((new Date()).getHours()*3600000 + (new Date()).getMinutes()*60000 + (new Date()).getSeconds()*1000 + (new Date()).getMilliseconds()) + offset + 5000);
+		setTimeout(function() { audio.play(); playClick(); }, 5000 - latency);
 		}
 		else if (ptime === false)
 			pauseClick();
@@ -101,4 +124,14 @@ window.addEventListener("DOMContentLoaded", function(){
 	pauseClick();
 	document.getElementById("play").addEventListener("click", playClick);
 	document.getElementById("pause").addEventListener("click", pauseClick);
+	document.addEventListener("keyup", function(e){
+
+		if (e.keyCode == 32)
+			{
+				if (!audio.volume)
+					playClick();
+				else
+					pauseClick();
+			}
+	});
 });

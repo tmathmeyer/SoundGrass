@@ -38,6 +38,7 @@ body {
     line-height: 40px;
     text-align: left;
 	padding: 0.3em;
+	margin: 0;
 }
 
 #presse {
@@ -52,6 +53,7 @@ body {
     font-size: 20px;
     height: 40px;
     padding: 0;
+	margin: 0;
 }
 
 #presse:hover, li:hover {
@@ -82,13 +84,12 @@ input {
 li {
     border-bottom: 1px solid #FFFFFF;
     cursor: pointer;
-    font-size: 32px;
+    font-size: 24px;
     height: 40px;
     left: 0;
     line-height: 40px;
     list-style-type: none;
     text-align: left;
-    width: 100%;
 	padding: 0 0.3em;
 }
 
@@ -119,7 +120,6 @@ li {
 
 	body {
 		background-color: #FFFFFF;
-		border-radius: 0.5em;
 		box-shadow: 0 0 27px #115577;
 		height: calc(100% - 2em);
 		left: 25%;
@@ -147,6 +147,7 @@ li {
 	#inpute {
 		border: 1px solid #4968EF;
 		border-width: 0 1px 1px 0;
+		color: #4968EF;
 	}
 
 	#presse {

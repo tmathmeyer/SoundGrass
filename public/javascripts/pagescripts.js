@@ -11,9 +11,17 @@ load_stations = function(socket){
 
 filter_stations = function(){
 	text = document.getElementById("inpute").value;
-	fun = stations.filter(function(data){
-		return data.indexOf(text.toLowerCase()) == 0;
-	});
+	var rex = text.length > 0 ? new RegExp(Array.prototype.filter.call(text, function(x){return x.charCodeAt() >= 97 && x.charCodeAt() <= 122}).join(".*"), "i") : false;
+	var fun;
+	console.info(rex);
+	if (!rex)
+	{
+		fun = stations.filter(function(){return true});
+	}
+	else
+	{
+		fun = stations.filter(function(data){return rex.test(data);});
+	}
 	render_grid(fun);
 }
 
@@ -31,6 +39,8 @@ render_grid = function(stations){
 	});
 }
 
-clear_dropdown = function(){
+function clear_dropdown(){
 	filter_stations();
 }
+
+	window.addEventListener("load", function(){clear_dropdown();});
