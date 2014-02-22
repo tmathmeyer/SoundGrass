@@ -28,11 +28,16 @@ function updatethetime()
 
 function songended()
 {
+	socket.emit('next song', {room_name: location.pathname});
+
+}
+
+function changesong(data)
+{
 	songnum++;
 	var songloc = '/Jump';//+songnum;
 	audio.children[0].src = songloc + ".wav";
 
-	socket.emit('next song', {room_name: location.pathname});
 	info = 1;
 	window.audio = audio;
 
@@ -95,6 +100,8 @@ window.addEventListener("DOMContentLoaded", function(){
 		socket.emit('player join room', {'room_name': location.pathname});
 		playable();
 	});
+	
+	socket.on('change song', changesong);
 
 	socket.on('players', function (msg) {
 		console.info("yay", msg);
