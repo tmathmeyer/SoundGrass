@@ -10,6 +10,15 @@ stations = {
     }
 };
 
+MockData = {
+	'stationName':'name1'
+	'stationData':{
+		"owner":"john",
+		"playlist":[]
+	}
+}
+
+
 
     
 
