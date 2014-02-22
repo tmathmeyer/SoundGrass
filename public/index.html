@@ -31,9 +31,9 @@
 
 		<script>
 			nonbounce("menu");
-			load_stations();    
 
 			socket = io.connect(location.origin);
+			load_stations(socket);
 			
 			joinStation = function(stationname){
 				var stationinfo = {

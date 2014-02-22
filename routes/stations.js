@@ -54,12 +54,12 @@ check_stations = function(){
 
 exports.handle = function(socket, io){
 
-	socket.on('get stations', function(data){
+	socket.on('get stations', function(){
 		socket.emit('get stations', stations);
 	});
 	
-	socket.on('get station names', function(data){
-		socket.emit('get station names', stations.keys);
+	socket.on('get station names', function(){
+		socket.emit('get station names', Object.keys(stations));
 	});
 
 	socket.on('create station', function(data){
