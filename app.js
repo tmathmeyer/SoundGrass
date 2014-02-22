@@ -47,6 +47,6 @@ io.sockets.on('connection', function (socket) {
 		console.log("away", data);
 	});
 
-	stations.handle(socket);
+	stations.handle(socket, io);
 });
 

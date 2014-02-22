@@ -18,9 +18,15 @@ window.addEventListener("DOMContentLoaded", function(){
 	socket = io.connect(location.href);
 	socket.on('connect', function () {
 		playable();
+	});
 
-		socket.on('message', function (msg) {
-			console.info("yay", msg);
-		});
+	socket.on('players', function (msg) {
+		console.info("yay", msg);
+		if (msg.time)
+			audio.currentTime = msg.time;
+		if (msg.play)
+			audio.play();
+		else if (msg.play === false)
+			audio.pause();
 	});
 });

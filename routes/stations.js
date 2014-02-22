@@ -14,7 +14,9 @@ stations = {
 
 
 
-exports.handle = function(socket){
+exports.handle = function(socket, io){
+	var ss = socket;
+
 	socket.on('get stations', function(data){
 		socket.emit('get stations', stations);
 	});
@@ -30,6 +32,7 @@ exports.handle = function(socket){
 
 	socket.on("players", function(data) {
 		// { ready: true }
+		io.sockets.emit('players', { time: data.time, play: data.play });
 	});
 
 }
