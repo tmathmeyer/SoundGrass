@@ -33,7 +33,7 @@
 			nonbounce("menu");
 			load_stations();    
 
-			socket = io.connect(location.href);
+			socket = io.connect(location.origin);
 			
 			joinStation = function(stationname){
 				var stationinfo = {
@@ -50,7 +50,7 @@
 			}
 
 			socket.on('join station', function(data){
-				console.log(data);
+				window.location = data.success_in;
 			});
 
 			socket.on('error', function(data){
