@@ -90,7 +90,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		if(msg.play){
 //			var ptime = new Date(msg.play);
 //			setTimeout(function() {playClick(); audio.play(); }, ptime.getHours()*3600000 + ptime.getMinutes()*60000 + ptime.getSeconds()*1000 + ptime.getMilliseconds() - ((new Date()).getHours()*3600000 + (new Date()).getMinutes()*60000 + (new Date()).getSeconds()*1000 + (new Date()).getMilliseconds()) + offset + 5000);
-		setTimeout(function() { playClick(); audio.plau(); }, 5000 - latency);
+		setTimeout(function() { playClick(); audio.play(); }, 5000 - latency);
 		}
 		else if (ptime === false)
 			pauseClick();
