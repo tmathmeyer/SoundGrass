@@ -37,6 +37,15 @@ exports.handle = function(socket){
 		}
 	});
 
+	socket.on('add song to station', function(data){
+		if (stations[data.stationName]){
+			stations[data.stationName].playlist.push(data.songName);
+			socket.emit('success', {"success_in":"add song to station"});
+		} else {
+			socket.emit('error', {"error_in":"add song to station"});
+		}
+	});
+
 	socket.on("players", function(data) {
 		// { ready: true }
 	});
