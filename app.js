@@ -32,6 +32,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.get('/station/:id', routes.index);
 app.get('/users', user.list);
 
 var server = http.createServer(app);
@@ -48,11 +49,9 @@ io.sockets.on('connection', function (socket) {
 		console.log("away", data);
 	});
 	control.handle(socket, io);
-});
-
-
-var station = io.of('/stations.html').on('connection', function (socket){
 	stations.handle(socket,io);
 });
+
+
 
 
