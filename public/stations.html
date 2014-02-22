@@ -27,12 +27,17 @@
 			}
 			
 			add_station = function(){
-				socket.emit('create station', {'stationName' : document.getElementById('inpute').value,
-											'stationData' : {
-											'owner' : 'test1',
-											'playlist' : []
-											}});
+				var stationinfo = {'stationName' : 'john',
+									'stationData' : {
+									'count' : 0,
+									'owner' : 'test1',
+									'playlist' : []
+									}}
+				socket.emit('create station', stationinfo);
+				socket.emit('join station', stationinfo);
 			}
+			
+			window.addEventListener("DOMContentLoaded", show_stations);
 		</script>
 	</body>
 </html>
