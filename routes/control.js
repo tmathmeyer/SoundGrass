@@ -28,8 +28,7 @@ exports.handle = function(socket, io){
 			play: true,
 			stime: false });
 			}
-			},30000);
-//			setTimeout(function(){ io.sockets.in(data.room_name).emit('players', {
+			},10000);
 			
 		}
 		
