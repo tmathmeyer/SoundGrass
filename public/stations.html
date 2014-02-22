@@ -17,7 +17,8 @@
 
 
 		<script>
-			socket = io.connect('http://localhost');
+			var socket = io.connect(location.href);
+			
 			show_stations = function(){
 				socket.emit('get stations');
 				
@@ -40,7 +41,7 @@
 			socket.on('join station', function(data){
 				window.location = data.stationLocation;
 			
-			}
+			});
 			
 			window.addEventListener("DOMContentLoaded", show_stations);
 		</script>

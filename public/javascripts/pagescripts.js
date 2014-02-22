@@ -15,8 +15,13 @@ filter_stations = function(){
 render_grid = function(stations){
 	table = "<ul id='searche'>";
 	stations.forEach(function(data){
-		table+="<li>"+data+"</li>";
+		table+="<li onclick='joinStation(\""+data+"\")'>"+data+"</li>";
 	});
 	table+="</ul>";
 	document.getElementById('table').innerHTML = table;
+}
+
+clear_dropdown = function(){
+	document.getElementById("inpute").placeholder = "";
+	filter_stations();
 }

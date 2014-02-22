@@ -20,7 +20,34 @@ MockData = {
 	}
 }
 
+clear_stations = function(){
+	delete stations;
+	stations = {
+		"Default" : {
+			"owner":"Overlord",
+			"count":0,
+			"playlist":[]
+		}
+	};
+	socket.emit('delete success', {'success_in':'delete all'});
+}
 
+remove_station = function(data){
+	var stationName = data.stationName.toLowerCase();
+
+	if (stations[stationName]){
+		delete stations[stationName];
+		socket.emit('delete success', {'success_in':'delete specified'});
+	}else{
+		socket.emit('delete failure', {'fail_in':'no station found'});
+	}
+
+}
+
+check_stations = function(){
+	
+
+}
 
 
 
@@ -30,12 +57,18 @@ exports.handle = function(socket, io){
 	socket.on('get stations', function(data){
 		socket.emit('get stations', stations);
 	});
+	
+	socket.on('get station names', function(data){
+		socket.emit('get station names', stations.keys);
+	});
 
 	socket.on('create station', function(data){
-		if (stations[data.stationName]){
+		var stationName = data.stationName.toLowerCase();
+	
+		if (stations[stationName]){
 			socket.emit('error', {"error_in":"create station"});
 		} else {
-			stations[data.stationName] = data.stationData;
+			stations[stationName] = data.stationData;
 			socket.emit('success', {"success_in":"create station"});
 		}
 		
@@ -43,8 +76,11 @@ exports.handle = function(socket, io){
 	});
 
 	socket.on('add song to station', function(data){
-		if (stations[data.stationName]){
-			stations[data.stationName].playlist.push(data.songName);
+		var stationName = data.stationName.toLowerCase();
+		var songName = data.songName.toLowerCase();
+		
+		if (stations[stationName]){
+			stations[stationName].playlist.push(songName);
 			socket.emit('success', {"success_in":"add song to station"});
 		} else {
 			socket.emit('error', {"error_in":"add song to station"});
@@ -52,9 +88,10 @@ exports.handle = function(socket, io){
 	});
 	
 	socket.on('join station', function(data){
-		if (stations[data.stationName]){
-			stations[data.stationName].count++;
-			socket.emit('join station', {'success_in':'station/'+data.stationName});
+		var stationName = data.stationName.toLowerCase();
+		if (stations[stationName]){
+			stations[stationName].count++;
+			socket.emit('join station', {'success_in':'station/'+stationName});
 		}else{
 			socket.emit('error', {'error_in':'joining station'});
 		}
