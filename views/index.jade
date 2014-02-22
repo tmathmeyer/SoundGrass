@@ -4,10 +4,10 @@ block content
 	div(class="station-name")
 		h1=station
 	audio(preload)
-		source(src="/file.wav",type='audio/wav')
+		source(src=audiofile,type='audio/wav')
 	div(class="playpause")
 		img(id="play",style="display:none",src="/images/play.svg")
 		img(id="pause",src="/images/pause.svg")
-	h2(class="song-title") The final Count down
-	progress(value="50",max="100")
+	h2(class="song-title" id="song-title")=songname
+	progress(value="0",max="100")
 	div(id="spacer")

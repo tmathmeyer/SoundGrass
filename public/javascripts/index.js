@@ -35,9 +35,9 @@ function songended()
 function changesong(data)
 {
 	songnum++;
-	var songloc = '/Jump';//+songnum;
+	var songloc = '/file' + data.new_song;
 	audio.children[0].src = songloc + ".wav";
-
+	document.getElementById("song-title").innerHTML = data.name;
 	info = 1;
 	window.audio = audio;
 

@@ -1,5 +1,5 @@
 player_station = {};
-
+var songNames = ["Help! - The Beatles", "Hypnotize - System of a Down", "The Immortals - Various Artists", "Storm - Craig Armstrong", "Mind Heist - Zack Hemsey"]
 
 exports.handle = function(socket, io){
 	socket.on("player join room", function(data){
@@ -45,7 +45,8 @@ exports.handle = function(socket, io){
 		if (radiostation && radiostation.playing){
 			radiostation.ready = 0;
 			radiostation.playing = false;
-			io.sockets.in(data.room_name).emit('change song', {new_song: Math.random() * 10});
+			var next = Math.floor(Math.random() * 4);
+			io.sockets.in(data.room_name).emit('change song', {new_song: next, name: songNames[next] });
 		}
 	
 	});
