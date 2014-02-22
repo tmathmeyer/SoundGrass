@@ -37,6 +37,11 @@
 				socket.emit('join station', stationinfo);
 			}
 			
+			socket.on('join station', function(data){
+				window.location = data.stationLocation;
+			
+			}
+			
 			window.addEventListener("DOMContentLoaded", show_stations);
 		</script>
 	</body>
