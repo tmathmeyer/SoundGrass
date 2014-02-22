@@ -1,16 +1,26 @@
 "use strict";
 
+var info = 0;
+var socket;
+
+function playable()
+{
+	info++;
+	if (info > 1)
+		socket.emit('players', {ready: true});
+}
+
 window.addEventListener("DOMContentLoaded", function(){
 	var audio = document.querySelector("audio");
 	// testing
 	window.audio = audio;
-	audio.addEventListener("canplaythrough", function(e){console.info("PLAYABLE", this, e)});
-	var socket = io.connect(location.href);
+	audio.addEventListener("canplaythrough", playable);
+	socket = io.connect(location.href);
 	socket.on('connect', function () {
-		socket.send('hi');
+		playable();
 
 		socket.on('message', function (msg) {
-			// my msg
+			console.info("yay", msg);
 		});
 	});
 });

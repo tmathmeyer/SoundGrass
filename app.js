@@ -42,11 +42,6 @@ server.listen(app.get('port'), function(){
 var io = require("socket.io").listen(server);
 
 io.sockets.on('connection', function (socket) {
-	console.log("connectd", socket);
-		
-	socket.on('message', function (data) {
-		console.log("message", data);
-	});
 
 	socket.on('disconnect', function (data) {
 		console.log("away", data);
