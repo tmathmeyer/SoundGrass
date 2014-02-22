@@ -16,3 +16,10 @@ show_stations = function(){
 		document.getElementById("fuckers").html(JSON.stringify(data));
 	});
 }
+
+add_station = function(){
+	socket.emit('create station', {'stationName' : 'test_name', 'stationData' : {
+									'owner' : 'test1',
+									'playlist' : []
+									}});
+}

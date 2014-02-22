@@ -1,0 +1,67 @@
+#menu {
+	position: fixed;
+	top: 0px;
+	left:0px;
+	margin: auto ;
+	width: 100%;
+	height: 40px;
+}
+
+#inpute {
+	height: 40px;
+	width: 80%;
+	font-size: 30px;
+	line-height: 40px;
+	text-align: center;
+	background: none;
+	border-color: #2AD;
+	color:#2AD;
+	border-left: none;
+}
+
+#presse {
+	height: 40px;
+	width: 20%;
+	top:0px;
+	position:absolute;
+	border-radius: 0px;
+	border-left: 0;
+	border-right: 0;
+	border-color: #2AD;
+	color:#2AD;
+}
+
+#table
+{
+	position:fixed;
+	top:40px;
+	width:100%;
+	left:0;
+}
+
+#searche {
+	padding:0;
+	margin:0;
+}
+
+
+input {
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+
+body {
+	background: -webkit-linear-gradient(#eff, #ffe);
+}
+
+li {
+	height:40px;
+	border-bottom: 1px solid #2AD;
+	list-style-type: none;
+	width:100%;
+	line-height: 40px;
+	font-size: 32px;
+	left:0;
+	text-align: center;
+	color:#2AD;
+}

@@ -1,0 +1,52 @@
+<html>
+
+	<head>
+		<title>
+			soundgrass 420 blazeit
+		</title>
+
+		<link href="style.css" rel="stylesheet">
+		<script src="javascripts/nonbounce.js"></script>
+		<script src="javascripts/pagescripts.js"></script>
+		<script src="/socket.io/socket.io.js.js"></script>
+
+		<meta name="viewport" content="width=device-width, user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-touch-fullscreen" content="yes" />
+		<meta name="HandheldFriendly" content="True">
+
+		
+	</head>
+
+	<body>
+		<div id = "menu">
+			<input type="text"   id="inpute" placeholder = "Enter Station" onkeyup="filter_stations()" autocorrect="off">
+			<input type="button" id="presse" value = "GO" onclick="add_station();"> 
+		</div>
+		<div id = "table">
+
+		</div>
+
+
+
+		<script>
+			nonbounce("menu");
+			load_stations();    
+
+			socket = io.connect('http://localhost');
+			
+			add_station = function(){
+				var stationinfo = {'stationName' : 'john',
+									'stationData' : {
+									'count' : 0,
+									'owner' : 'test1',
+									'playlist' : []
+									}}
+				socket.emit('create station', stationinfo);
+				socket.emit('join station', stationinfo);
+			}
+
+		</script>
+	</body>
+
+</html>

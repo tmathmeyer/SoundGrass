@@ -1,6 +1,7 @@
 stations = {
     "test1" : {
         "owner":"ted",
+        "count": 0,
         "playlist" : [
             "song1",
             "song2",
@@ -14,6 +15,7 @@ MockData = {
 	'stationName':'name1',
 	'stationData':{
 		"owner":"john",
+		"count":0,
 		"playlist":[]
 	}
 }
@@ -36,6 +38,8 @@ exports.handle = function(socket, io){
 			stations[data.stationName] = data.stationData;
 			socket.emit('success', {"success_in":"create station"});
 		}
+		
+		
 	});
 
 	socket.on('add song to station', function(data){
@@ -45,6 +49,16 @@ exports.handle = function(socket, io){
 		} else {
 			socket.emit('error', {"error_in":"add song to station"});
 		}
+	});
+	
+	socket.on('join station', function(data){
+		if (stations[data.stationName]){
+			stations[data.stationName].count++;
+			socket.emit('join station', {'success_in':'station/'+data.stationName});
+		}else{
+			socket.emit('error', {'error_in':'joining station'});
+		}
+	
 	});
 
 }
