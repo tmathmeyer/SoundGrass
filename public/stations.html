@@ -7,7 +7,7 @@
 
 	<body>
 		<button onclick="show_stations();">show stations</button>
-		<button onclick="show_stations();">add stations</button>
+		<button onclick="add_station();">add stations</button>
 
 
 		<div id = "fuckers">
@@ -25,6 +25,19 @@
 					document.getElementById("fuckers").textContent = JSON.stringify(data);
 				});
 			}
+			
+			add_station = function(){
+				var stationinfo = {'stationName' : 'john',
+									'stationData' : {
+									'count' : 0,
+									'owner' : 'test1',
+									'playlist' : []
+									}}
+				socket.emit('create station', stationinfo);
+				socket.emit('join station', stationinfo);
+			}
+			
+			window.addEventListener("DOMContentLoaded", show_stations);
 		</script>
 	</body>
 </html>
