@@ -1,7 +1,6 @@
 @import url("http://fonts.googleapis.com/css?family=Istok+Web:400,400italic");
 
 html, body {
-     background-color: #4968EF;
      color: white;
      font-family: 'Istok Web',sans-serif;
      height: 100%;
@@ -9,21 +8,21 @@ html, body {
      padding: 0px;
      text-shadow: 1px 1px 5px #115577;
      font-size: 12pt;
+     text-align: center;
+}
+
+html {
+     box-shadow: 0px 0px 27px #115577 inset;
+     background-color: #4968EF;
 }
 
 body {
      -webkit-align-items: center;
      align-items: center;
-     box-shadow: 0px 0px 27px #115577 inset;
      display: -webkit-flex;
      display: flex;
      -webkit-flex-direction: column;
      flex-direction: column;
-}
-
-.station-name {
-     margin: 0px;
-     padding: 1.5em 0px 0.5em;
 }
 
 .playpause {
@@ -39,12 +38,6 @@ body {
      flex-grow: 4;
      width: 50%;
 }
-
-#spacer {
-     -webkit-flex-grow: 3;
-     flex-grow: 3;
-}
-
 .playpause > img {
      width: 100%;
 }
@@ -69,14 +62,52 @@ progress::-webkit-progress-value {
      box-shadow: 0px 0px 5px white;
 }
 
-.song-title {
-     padding: 1em;
+@media screen and (orientation:portrait) {
+	.station-name {
+		 margin: 0px;
+		 padding: 1.5em 0px 0.5em;
+	}
+
+	#spacer {
+		 -webkit-flex-grow: 3;
+		 flex-grow: 3;
+	}
+
+	.song-title {
+		 padding: 1em;
+	}
 }
 
-
-
-
-
+@media screen and (orientation:landscape) {
+	body {
+		width: 50%;
+    	justify-content: space-around;
+    	-webkit-justify-content: space-around;
+	}
+	.playpause {
+		align-items: center;
+		display: flex;
+		-webkit-align-items: center;
+		display: -display-flex;
+		height: 100%;
+		-webkit-justify-content: center;
+		justify-content: center;
+		left: 50%;
+		position: absolute;
+		top: 0;
+		width: 50%;
+	}
+	.playpause > img {
+		height: 75%;
+		width: auto;
+	}
+	.station-name {
+		-webkit-align-items: center;
+		display: -webkit-flex;
+		align-items: center;
+		display: flex;
+	}
+}
 
 #menu {
      position: fixed;
