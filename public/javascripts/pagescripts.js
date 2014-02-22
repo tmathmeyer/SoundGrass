@@ -20,10 +20,15 @@ filter_stations = function(){
 render_grid = function(stations){
 	table = "<ul id='searche'>";
 	stations.forEach(function(data){
-		table+="<li onclick='joinStation(\""+data+"\")'>"+data+"</li>";
+		table+="<li name='"+data+"' class='selectionList'>"+data+"</li>";
 	});
 	table+="</ul>";
 	document.getElementById('table').innerHTML = table;
+	nodes = Array.prototype.slice.call(document.getElementsByClassName('selectionList'));
+	nodes.forEach(function(each){
+		each.addEventListener("touchstart", joinStation, false);
+		each.addEventListener("click", joinStation, false);
+	});
 }
 
 clear_dropdown = function(){
