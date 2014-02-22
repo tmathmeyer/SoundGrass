@@ -15,18 +15,30 @@ exports.handle = function(socket, io){
 	});
 	
 	socket.on("players", function(data) {
-		if (player_station[data.room_name]){
-			player_station[data.room_name].ready++;
+		var radiostation = player_station[data.room_name];
+	
+		if (radiostation){
+			radiostation.ready++;
 			
-			if (!player_station[data.room_name].playing &&
-				player_station[data.room_name].count == player_station[data.room_name].ready){
+			if (!radiostation.playing &&
+				radiostation.count == radiostation.ready){
 				
-				player_station[data.room_name].playing = true;
+				radiostation.playing = true;
 				io.sockets.in(data.room_name).emit('players', { time: data.time, 
 																play: true,
 															 	stime: new Date() });
 			}
 		}
 		
+	});
+	
+	socket.on("next song", function(data){
+		var radiostation = player_station[data.room_name];
+	
+		if (radiostation){
+			radiostation.ready = 0;
+			radiostation.playing = false;
+		}
+	
 	});
 }
