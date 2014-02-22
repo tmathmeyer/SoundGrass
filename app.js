@@ -41,13 +41,18 @@ server.listen(app.get('port'), function(){
 
 var io = require("socket.io").listen(server);
 
+
 io.sockets.on('connection', function (socket) {
 
 	socket.on('disconnect', function (data) {
 		console.log("away", data);
 	});
-
-	stations.handle(socket);
 	control.handle(socket, io);
 });
+
+
+var station = io.of('/stations.html').on('connection', function (socket){
+	stations.handle(socket,io);
+});
+
 
