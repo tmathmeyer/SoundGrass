@@ -1,7 +1,6 @@
 player_station = {};
 
 
-
 exports.handle = function(socket, io){
 	socket.on("player join room", function(data){
 		socket.join(data.room_name);
@@ -20,14 +19,17 @@ exports.handle = function(socket, io){
 		if (radiostation){
 			radiostation.ready++;
 			
-			if (!radiostation.playing &&
-				radiostation.count == radiostation.ready){
-				
-				radiostation.playing = true;
-				io.sockets.in(data.room_name).emit('players', { time: data.time, 
-																play: new Date(),
-															 	stime: new Date() });
-			}
+			setTimeout(function(){
+				if (!radiostation.playing &&
+					radiostation.count == radiostation.ready){
+	
+					radiostation.playing = true;
+					io.sockets.in(data.room_name).emit('players', { time: data.time, 
+																	play: new Date(),
+																	stime: new Date() });
+				}
+			},30000);
+			
 		}
 		
 	});

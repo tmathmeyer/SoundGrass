@@ -12,6 +12,13 @@ function playable()
 								room_name: location.pathname});
 }
 
+function updatethetime()
+{
+	var progress = document.querySelector("progress");
+	progress.value = audio.currentTime / audio.duration * 100;
+
+}
+
 function playClick()
 {
 	document.getElementById("play").style.display = "none";
@@ -55,7 +62,12 @@ window.addEventListener("DOMContentLoaded", function(){
 	var audio = document.querySelector("audio");
 	// testing
 	window.audio = audio;
+	
+	
 	audio.addEventListener("canplaythrough", playable);
+	audio.addEventListener("timeupdate", updatethetime);
+	
+	
 	socket = io.connect(location.origin);
 
 	socket.on('connect', function () {
