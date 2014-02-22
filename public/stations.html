@@ -7,7 +7,7 @@
 
 	<body>
 		<button onclick="show_stations();">show stations</button>
-		<button onclick="show_stations();">add stations</button>
+		<button onclick="add_station();">add stations</button>
 
 
 		<div id = "fuckers">
@@ -24,6 +24,14 @@
 				socket.on('get stations', function(data){
 					document.getElementById("fuckers").textContent = JSON.stringify(data);
 				});
+			}
+			
+			add_station = function(){
+				socket.emit('create station', {'stationName' : document.getElementById('inpute').value,
+											'stationData' : {
+											'owner' : 'test1',
+											'playlist' : []
+											}});
 			}
 		</script>
 	</body>
