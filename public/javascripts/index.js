@@ -4,14 +4,34 @@ var info = 0;
 var songnum = 0;
 var socket;
 var latency;
-var offset;
+var offset, ctx = new AudioContext(), anl, volum= ctx.createGain();
 var tmp = 0;
+var can;
 function playable()
 {
 	info++;
 	if (info > 1)
+	{
 		socket.emit('players', {ready: true,
 								room_name: location.pathname});
+
+         ;
+		 anl = ctx.createAnalyser();
+		var src = ctx.createMediaElementSource(audio);
+		src.connect(volum);
+		volum.connect(anl);
+		anl.connect(ctx.destination);
+		var data = new Uint8Array(anl.frequencyBinCount);
+		can.width = window.innerWidth;
+		can.height = window.innerHeight;
+		window.xx = can.getContext("2d");
+		var lg = xx.createLinearGradient(0,window.innerHeight - 255,0,2550);
+		lg.addColorStop(0, "#157");
+		lg.addColorStop(1, "white");
+		xx.fillStyle = lg;
+
+		window.ii = setInterval(function(){anl.getByteFrequencyData(data); xx.clearRect(0,0,window.innerWidth,window.innerHeight);for(var x in data){ xx.fillRect(x,window.innerHeight - data[x], 1, data[x])}}, 10)
+	}
 }
 
 function updatethetime()
@@ -48,14 +68,14 @@ function playClick()
 {
 	document.getElementById("play").style.display = "none";
 	document.getElementById("pause").style.display = "";
-	audio.volume = 1;
+	volum.gain.value = 1;
 }
 
 function pauseClick()
 {
 	document.getElementById("play").style.display = "";
 	document.getElementById("pause").style.display = "none";
-	audio.volume = 0;
+	volum.gain.value = 0;
 }
 
 function syncTime() {
@@ -85,6 +105,7 @@ function syncTime() {
 }
 
 window.addEventListener("DOMContentLoaded", function(){
+	can = document.getElementById("can");
 	var audio = document.querySelector("audio");
 	// testing
 	window.audio = audio;
@@ -103,7 +124,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		audio.pause();
 		playable();
 	});
-	
+
 	socket.on('change song', changesong);
 
 	socket.on('players', function (msg) {
