@@ -33,7 +33,7 @@
 			nonbounce("menu");
 			load_stations();    
 
-			socket = io.connect('http://localhost');
+			socket = io.connect(location.href);
 			
 			add_station = function(){
 				var stationinfo = {'stationName' : 'john',
