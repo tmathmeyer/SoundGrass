@@ -22,14 +22,13 @@ exports.handle = function(socket, io){
 			setTimeout(function(){
 				if (!radiostation.playing &&
 					radiostation.count == radiostation.ready){
-				
+	
 					radiostation.playing = true;
 					io.sockets.in(data.room_name).emit('players', { time: data.time, 
-																	play: true,
+																	play: new Date(),
 																	stime: new Date() });
 				}
 			},30000);
-			
 			
 		}
 		

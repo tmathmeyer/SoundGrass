@@ -20,7 +20,7 @@
 
 	<body>
 		<div id = "menu">
-			<input type="text"   id="inpute" placeholder = "Enter Station" onkeyup="filter_stations()" autocorrect="off" onclick="clear_dropdown();" >
+			<input type="text"   id="inpute" placeholder = "Enter Station"  autocorrect="off" onclick="clear_dropdown();" >
 			<input type="button" id="presse" value = "GO" onclick="joinExact();">
 		</div>
 		<div id = "table">
@@ -34,6 +34,8 @@
 
 			socket = io.connect(location.origin);
 			load_stations(socket);
+
+			document.getElementById("inpute").addEventListener("click", filter_stations, false);
 
 			joinStation = function(stationname){
 				console.log(stationname.srcElement.innerText);
