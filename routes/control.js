@@ -10,7 +10,7 @@ exports.handle = function(socket, io){
 			player_station[data.room_name] = {'count' : 1,
 										  	  'ready' : 0};
 		}
-	}
+	});
 	
 	socket.on("players", function(data) {
 		if (player_station[data.room_name]){
