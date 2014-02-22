@@ -5,7 +5,7 @@
 			soundgrass 420 blazeit
 		</title>
 
-		<link href="style.css" rel="stylesheet">
+		<link href="stylesheets/style.css" rel="stylesheet">
 		<script src="javascripts/nonbounce.js"></script>
 		<script src="javascripts/pagescripts.js"></script>
 		<script src="/socket.io/socket.io.js.js"></script>
@@ -20,7 +20,7 @@
 
 	<body>
 		<div id = "menu">
-			<input type="text"   id="inpute" placeholder = "Enter Station" onkeyup="filter_stations()" autocorrect="off">
+			<input type="text"   id="inpute" placeholder = "Enter Station" onkeyup="filter_stations()" autocorrect="off" onclick="clear_dropdown();" >
 			<input type="button" id="presse" value = "GO" onclick="add_station();"> 
 		</div>
 		<div id = "table">

@@ -20,3 +20,8 @@ render_grid = function(stations){
 	table+="</ul>";
 	document.getElementById('table').innerHTML = table;
 }
+
+clear_dropdown = function(){
+	document.getElementById("inpute").placeholder = "";
+	filter_stations();
+}

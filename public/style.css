@@ -10,7 +10,7 @@
 #inpute {
 	height: 40px;
 	width: 80%;
-	font-size: 30px;
+	font-size: 32px;
 	line-height: 40px;
 	text-align: center;
 	background: none;
@@ -29,6 +29,8 @@
 	border-right: 0;
 	border-color: #2AD;
 	color:#2AD;
+	font-size: 20px;
+	padding: 0;
 }
 
 #table
@@ -51,7 +53,7 @@ input {
 }
 
 body {
-	background: -webkit-linear-gradient(#eff, #ffe);
+	background-color:#4968EF;
 }
 
 li {
