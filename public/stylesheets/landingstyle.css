@@ -1,66 +1,59 @@
 @import url("http://fonts.googleapis.com/css?family=Istok+Web:400,400italic");
 
 html, body {
-     color: white;
-     font-family: 'Istok Web',sans-serif;
-     height: 100%;
-     margin: 0px;
-     padding: 0px;
-     text-shadow: 1px 1px 5px #115577;
-     font-size: 12pt;
+    color: #FFFFFF;
+    font-family: 'Istok Web',sans-serif;
+    font-size: 12pt;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+	text-align: center;
+    text-shadow: 1px 1px 5px #115577;
 }
 
 html {
-     box-shadow: 0px 0px 27px #115577 inset;
-     background-color: #4968EF;
+	background-color: #4968EF;
+	box-shadow: 0 0 27px #115577 inset;
 }
 
 body {
-     -webkit-align-items: center;
-     align-items: center;
-     display: -webkit-flex;
-     display: flex;
-     -webkit-flex-direction: column;
-     flex-direction: column;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
 }
 
 #menu {
-     position: fixed;
-     top: 0px;
-     left:0px;
-     margin: auto ;
-     width: 100%;
-     height: 40px;
+	display: -webkit-flex;
+	display: flex;
 }
 
 #inpute {
-     height: 40px;
-     width: 80%;
-     font-size: 20px;
-     line-height: 40px;
-     text-align: center;
-     background: none;
-     border: 1px solid white;
-     border-left: none;
-     border-top: none;
-     color:#fff;
+	background-color: transparent;
+	border: 1px solid white;
+	border-width: 0 1px 1px 0;
+    color: white;
+    -webkit-flex-grow: 8;
+    flex-grow: 8;
+    font-size: 20px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
 }
 
 #presse {
-     height: 40px;
-     width: 20%;
-     top:0px;
-     position:absolute;
      background-color: transparent;
-     border-radius: 0px;
-     border-width: 0 0 1px;
-     border-color: #fff;
-     border-style: solid;
-     font-size: 20px;
-     padding: 0;
-     color:#fff;
-     text-shadow: 1px 1px 5px #115577;
-	 cursor: pointer;
+	border-color: #FFFFFF;
+    border-radius: 0;
+    border-style: solid;
+    border-width: 0px 0px 1px 0;
+    color: #FFFFFF;
+    cursor: pointer;
+    flex-grow: 2;
+    font-size: 20px;
+    height: 40px;
+    padding: 0;
+	text-shadow: 1px 1px 5px #115577;
 }
 
 #presse:hover, li:hover {
@@ -74,19 +67,14 @@ body {
 	background-image: linear-gradient(to bottom, silver, white);
 }
 
-#table
-{
-     position:fixed;
-     top:40px;
-     width:100%;
-     left:0;
+#table {
+    flex-grow: 1;
+    overflow-y: auto;
 }
-
 #searche {
-     padding:0;
-     margin:0;
+    margin: 0;
+    padding: 0;
 }
-
 
 input {
     -webkit-appearance: none;
@@ -94,15 +82,15 @@ input {
 }
 
 li {
-     height:40px;
-     border-bottom: 1px solid #fff;
-     list-style-type: none;
-     width:100%;
-     line-height: 40px;
-     font-size: 32px;
-     left:0;
-     text-align: center;
-     cursor: pointer;
+    border-bottom: 1px solid #FFFFFF;
+    cursor: pointer;
+    font-size: 32px;
+    height: 40px;
+    left: 0;
+    line-height: 40px;
+    list-style-type: none;
+    text-align: center;
+    width: 100%;
 }
 
 ::-webkit-input-placeholder {
