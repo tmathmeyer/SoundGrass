@@ -20,7 +20,7 @@
 
 	<body>
 		<div id = "menu">
-			<input type="text"   id="inpute" placeholder = "Enter Station"  autocorrect="off" onclick="clear_dropdown();" >
+			<input type="text"   id="inpute" placeholder = "Enter Station"  autocorrect="off" onclick="clear_dropdown();" autofocus>
 			<input type="button" id="presse" value = "GO" onclick="joinExact();">
 		</div>
 		<div id = "table">
@@ -32,10 +32,11 @@
 		<script>
 			nonbounce("menu");
 
-            document.getElementById("inpute").addEventListener("keydown", function(e){
-                console.info(e);
+            document.getElementById("inpute").addEventListener("keyup", function(e){
                 if (e.keyCode == e.DOM_VK_RETURN)
                     joinExact();
+                else
+                    setTimeout(clear_dropdown, 10);
             });
 
 			socket = io.connect(location.origin);
@@ -73,7 +74,6 @@
 					joinStation.call(text);
 				}
 			}
-
 		</script>
 	</body>
 

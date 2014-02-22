@@ -51,7 +51,7 @@ function syncTime() {
 		latency = (((new Date).getTime() - start)/2)*0.75 + 0.25*latency;
         var timestring = r.getResponseHeader("DATE");
 
-        // Set the time to the **slightly old** date sent from the 
+        // Set the time to the **slightly old** date sent from the
         // server, then adjust it to a good estimate of what the
         // server time is **right now**.
     };
@@ -63,12 +63,12 @@ window.addEventListener("DOMContentLoaded", function(){
 	var audio = document.querySelector("audio");
 	// testing
 	window.audio = audio;
-	
-	
+
+
 	audio.addEventListener("canplaythrough", playable);
 	audio.addEventListener("timeupdate", updatethetime);
-	
-	
+
+
 	socket = io.connect(location.origin);
 
 	socket.on('connect', function () {
@@ -94,6 +94,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	socket.on('get station names', function(data){
 		console.log(data);
 	});
+    clear_dropdown();
 	pauseClick();
 	document.getElementById("play").addEventListener("click", playClick);
 	document.getElementById("pause").addEventListener("click", pauseClick);
