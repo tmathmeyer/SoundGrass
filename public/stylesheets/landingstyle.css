@@ -8,12 +8,10 @@ html, body {
     margin: 0;
     padding: 0;
 	text-align: center;
-    text-shadow: 1px 1px 5px #115577;
 }
 
 html {
 	background-color: #4968EF;
-	box-shadow: 0 0 27px #115577 inset;
 }
 
 body {
@@ -38,7 +36,8 @@ body {
     font-size: 20px;
     height: 40px;
     line-height: 40px;
-    text-align: center;
+    text-align: left;
+	padding: 0.3em;
 }
 
 #presse {
@@ -53,7 +52,7 @@ body {
     font-size: 20px;
     height: 40px;
     padding: 0;
-	text-shadow: 1px 1px 5px #115577;
+	margin: 0;
 }
 
 #presse:hover, li:hover {
@@ -84,21 +83,91 @@ input {
 li {
     border-bottom: 1px solid #FFFFFF;
     cursor: pointer;
-    font-size: 32px;
+    font-size: 24px;
     height: 40px;
     left: 0;
     line-height: 40px;
     list-style-type: none;
-    text-align: center;
-    width: 100%;
+    text-align: left;
+	padding: 0 0.3em;
 }
 
-::-webkit-input-placeholder {
-    color:    #fff;
+@media (max-width: 800px) {
+	html, body {
+		color: #fff;
+		text-shadow: 1px 1px 5px #115577;
+	}
+
+	html {
+		 box-shadow: 0px 0px 27px #115577 inset;
+	}
+
+	::-webkit-input-placeholder {
+		color:    #fff;
+	}
+	:-moz-placeholder {
+		color:    #fff;
+	}
+	::-moz-placeholder {
+		color:    #fff;
+	}
+	#presse {
+		text-shadow: 1px 1px 5px #115577;
+	}
 }
-:-moz-placeholder {
-    color:    #fff;
+@media (min-width: 800px) {
+
+	body {
+		background-color: #FFFFFF;
+		box-shadow: 0 0 27px #115577;
+		height: calc(100% - 2em);
+		left: 25%;
+		position: relative;
+		top: 1em;
+		width: 50%;
+	}
+	html, body {
+		color: #4968EF;
+	}
+	*::-moz-placeholder {
+		color: #4968EF;
+	}
+
+	::-webkit-input-placeholder {
+		color:    #4968EF;
+	}
+	:-moz-placeholder {
+		color:    #4968EF;
+	}
+	::-moz-placeholder {
+		color:    #4968EF;
+	}
+
+	#inpute {
+		border: 1px solid #4968EF;
+		border-width: 0 1px 1px 0;
+		color: #4968EF;
+	}
+
+	#presse {
+	    color: #4968EF;
+		border-color: #4968EF;
+	}
+
+	li {
+		border-color: #4968EF;
+	}
+
+
+	#presse:hover, li:hover {
+		 color: white;
+		 background-color: #4968EF;
+		 text-shadow: none;
+	}
+
+	#presse:active, li:active {
+		color: white;
+		background-image: linear-gradient(to bottom, #3958dF, #4968EF);
+	}
 }
-::-moz-placeholder {
-    color:    #fff;
-}
+

@@ -20,7 +20,7 @@
 
 	<body>
 		<div id = "menu">
-			<input type="text"   id="inpute" placeholder = "Enter Station"  autocorrect="off" onclick="clear_dropdown();" >
+			<input type="text"   id="inpute" placeholder = "Enter Station"  autocorrect="off" onclick="clear_dropdown();" autofocus>
 			<input type="button" id="presse" value = "GO" onclick="joinExact();">
 		</div>
 		<div id = "table">
@@ -32,15 +32,21 @@
 		<script>
 			nonbounce("menu");
 
+            document.getElementById("inpute").addEventListener("keyup", function(e){
+                if (e.keyCode == e.DOM_VK_RETURN)
+                    joinExact();
+                else
+                    setTimeout(clear_dropdown, 10);
+            });
+
 			socket = io.connect(location.origin);
 			load_stations(socket);
 
 			document.getElementById("inpute").addEventListener("click", filter_stations, false);
 
-			joinStation = function(stationname){
-				console.log(stationname.srcElement.innerText);
+			var joinStation = function(){
 				var stationinfo = {
-					'stationName' : stationname.srcElement.innerText,
+					'stationName' : this.textContent,
 					'stationData' : {
 						'count' : 0,
 						'owner' : 'test1',
@@ -61,14 +67,13 @@
 				console.log(data);
 			});
 
-			joinExact = function(){
-				text = document.getElementById("inpute").value;
+			function joinExact(){
+				var text = document.getElementById("inpute").value;
 				if (text != ""){
-					text = {"srcElement":{"innerText":text}};
-					joinStation(text);
+                    text = {textContent: text}
+					joinStation.call(text);
 				}
 			}
-
 		</script>
 	</body>
 
