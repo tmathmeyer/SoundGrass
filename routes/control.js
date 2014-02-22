@@ -28,7 +28,7 @@ exports.handle = function(socket, io){
 																	play: new Date(),
 																	stime: new Date() });
 				}
-			},30000);
+			},10000);
 			
 		}
 		
