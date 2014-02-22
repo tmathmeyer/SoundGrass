@@ -74,6 +74,88 @@
 					joinStation.call(text);
 				}
 			}
+
+            /*audio.pause()
+undefined
+>>> AudioNode
+AudioNode()
+>>> ctx = new AudioContext()
+AudioContext { destination=AudioDestinationNode, sampleRate=44100, currentTime=0, more...}
+>>> anl = ctx.createAnalyser()
+AnalyserNode { fftSize=2048, frequencyBinCount=1024, minDecibels=-100, more...}
+>>> src = ctx.createMediaElementSource(audio)
+MediaElementAudioSourceNode { context=AudioContext, numberOfInputs=0, numberOfOutputs=1, more...}
+>>> src.connect(anl)
+undefined
+>>> anl.connect(ctx.destination)
+undefined
+>>> anl.getByteFrequencyData()
+TypeError: Not enough arguments to AnalyserNode.getByteFrequencyData.
+
+
+anl.getByteFrequencyData()
+
+/* EXP...yData() (line 2)
+>>> data = [];
+[]
+>>> data = new Uint8Array(anl.frequencyBinCount);
+Uint8Array { 0=0, 1=0, 2=0, more...}
+>>> anl.frequencyBinCount
+1024
+>>> audio.play()
+undefined
+>>> audio.pause()
+undefined
+>>> x = anl.getByteFrequencyData(data)
+undefined
+>>> data
+Uint8Array { 0=0, 1=0, 2=0, more...}
+>>> audio.play()
+undefined
+>>> x = anl.getByteFrequencyData(data)
+undefined
+>>> data
+Uint8Array { 0=105, 1=128, 2=165, more...}
+>>> audio.pause()
+undefined
+>>> can.width = window.innerWidth
+1366
+>>> can.height = window.innerHeight
+353
+>>> can
+<canvas id="can" width="1366" height="353">
+>>> xx = can.getContext("2d")
+CanvasRenderingContext2D { canvas=canvas#can, globalAlpha=1, globalCompositeOperation="source-over", more...}
+>>> xx.fillStyle = "red";
+"red"
+>>> for(var x in data){ xx.fillRect(x,0,1,data[x])}
+undefined
+>>> ii = setInterval(function(){anl.getByteFrequencyData(data); for(var x in data){ xx.fillRect(x,0,1,data[x])}}, 100)
+243
+>>> audio.play()
+undefined
+TypeError: progress is null
+
+
+progress.value = tmp;
+
+index.js (line 24)
+>>> audio.pause();
+undefined
+TypeError: progress is null
+
+
+progress.value = tmp;
+
+index.js (line 24)
+>>> clearInterval(ii)
+undefined
+>>> xx.clearRect(0,0, 2000,2000)
+undefined
+>>> ii = setInterval(function(){anl.getByteFrequencyData(data); xx.clearRect(0,0,2000,2000);for(var x in data){ xx.fillRect(x,0,1,data[x])}}, 100)
+250
+>>> audio.play()
+undefined*/
 		</script>
 	</body>
 
