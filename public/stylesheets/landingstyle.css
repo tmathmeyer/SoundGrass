@@ -40,10 +40,10 @@ body {
      line-height: 40px;
      text-align: center;
      background: none;
-     border-color: #fff;
+     border: 1px solid white;
      border-left: none;
+     border-top: none;
      color:#fff;
-
 }
 
 #presse {
@@ -51,20 +51,27 @@ body {
      width: 20%;
      top:0px;
      position:absolute;
+     background-color: transparent;
      border-radius: 0px;
-     border-left: 0;
-     border-right: 0;
+     border-width: 0 0 1px;
      border-color: #fff;
+     border-style: solid;
      font-size: 20px;
      padding: 0;
      color:#fff;
      text-shadow: 1px 1px 5px #115577;
+	 cursor: pointer;
 }
 
-#presse:active {
+#presse:hover {
      color: #4968EF;
      background-color: #fff;
      text-shadow: none;
+}
+
+#presse:active {
+	color: #4968EF;
+	background-image: linear-gradient(to bottom, silver, white);
 }
 
 #table
@@ -95,6 +102,7 @@ li {
      font-size: 32px;
      left:0;
      text-align: center;
+     cursor: pointer;
 }
 
 li:active {
