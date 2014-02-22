@@ -10,6 +10,15 @@ stations = {
     }
 };
 
+MockData = {
+	'stationName':'name1',
+	'stationData':{
+		"owner":"john",
+		"playlist":[]
+	}
+}
+
+
 
 
 
@@ -27,6 +36,15 @@ exports.handle = function(socket, io){
 		} else {
 			stations[data.stationName] = data.stationData;
 			socket.emit('success', {"success_in":"create station"});
+		}
+	});
+
+	socket.on('add song to station', function(data){
+		if (stations[data.stationName]){
+			stations[data.stationName].playlist.push(data.songName);
+			socket.emit('success', {"success_in":"add song to station"});
+		} else {
+			socket.emit('error', {"error_in":"add song to station"});
 		}
 	});
 
