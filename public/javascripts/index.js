@@ -7,7 +7,8 @@ function playable()
 {
 	info++;
 	if (info > 1)
-		socket.emit('players', {ready: true});
+		socket.emit('players', {ready: true,
+								room_name: location.pathname});
 }
 
 window.addEventListener("DOMContentLoaded", function(){
@@ -16,7 +17,10 @@ window.addEventListener("DOMContentLoaded", function(){
 	window.audio = audio;
 	audio.addEventListener("canplaythrough", playable);
 	socket = io.connect(location.origin);
+	
 	socket.on('connect', function () {
+		socket.emit('player join room', {'room_name': location.pathname});
+		socket.join(location.pathname);
 		playable();
 	});
 
