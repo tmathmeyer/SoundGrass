@@ -35,7 +35,7 @@
 			socket = io.connect(location.origin);
 			load_stations(socket);
 
-			document.getElementById("inpute").addEventListener("click", filter_stations, false);
+			document.getElementById("inpute").addEventListener("keyup", filter_stations, false);
 
 			joinStation = function(stationname){
 				console.log(stationname.srcElement.innerText);
