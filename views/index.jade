@@ -1,12 +1,14 @@
 extends layout
 
 block content
-	h1(class="station-name") Pandoras Box
+	div(class="station-name")
+		h1=station
 	audio(preload)
-		source(src="file.opus",type='audio/ogg; codecs="opus"')
-		source(src="file.ogg",type='audio/ogg; codecs="vorbis"')
+		source(src="/file.opus",type='audio/ogg; codecs="opus"')
+		source(src="/file.ogg",type='audio/ogg; codecs="vorbis"')
 	div(class="playpause")
-		img(src="/images/play.svg")
+		img(id="play",style="display:none",src="/images/play.svg")
+		img(id="pause",src="/images/pause.svg")
 	h2(class="song-title") The final Count down
 	progress(value="50",max="100")
 	div(id="spacer")

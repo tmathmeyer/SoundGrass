@@ -31,8 +31,7 @@ if ('development' == app.get('env')) {
 	app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
-app.get('/station/:id', routes.index);
+app.get('/station/:id', routes.station);
 app.get('/users', user.list);
 
 var server = http.createServer(app);
@@ -41,7 +40,7 @@ server.listen(app.get('port'), function(){
 });
 
 var io = require("socket.io").listen(server);
-
+io.set("log level", 1);
 
 io.sockets.on('connection', function (socket) {
 
