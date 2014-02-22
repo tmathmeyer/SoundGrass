@@ -1,4 +1,10 @@
 extends layout
 
 block content
-  audio(src="file.opus",preload)
+	h1(class="station-name") Pandoras Box
+	audio(src="file.opus",preload)
+	div(class="playpause")
+		img(src="/images/play.svg")
+	h2(class="song-title") The final Count down
+	progress(value="50",max="100")
+	div(id="spacer")
