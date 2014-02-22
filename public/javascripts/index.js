@@ -1,6 +1,7 @@
 "use strict";
 
 var info = 0;
+var songnum = 0;
 var socket;
 var latency;
 var offset;
@@ -16,7 +17,26 @@ function updatethetime()
 {
 	var progress = document.querySelector("progress");
 	progress.value = audio.currentTime / audio.duration * 100;
+	
+	if (progress.value == 100){
+		
+	}
 
+}
+
+function songended()
+{
+	songnum++;
+	var songloc = '/file';//+songnum;
+	audio.children[0].src = songloc + ".opus";
+	audio.children[1].src = songloc + ".ogg";
+	audio.children[2].src = songloc + ".mp3";
+		
+	socket.emit('next song', {room_name: location.pathname});
+	info = 1;
+	window.audio = audio;
+	
+	audio.load();
 }
 
 function playClick()
@@ -67,8 +87,8 @@ window.addEventListener("DOMContentLoaded", function(){
 
 	audio.addEventListener("canplaythrough", playable);
 	audio.addEventListener("timeupdate", updatethetime);
-
-
+	audio.addEventListener("ended",songended);
+	
 	socket = io.connect(location.origin);
 
 	socket.on('connect', function () {
