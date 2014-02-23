@@ -4,9 +4,17 @@ var info = 0;
 var songnum = 0;
 var socket;
 var latency;
-var offset, ctx = new AudioContext(), anl, volum= ctx.createGain();
+//if (typeof AudioContext != 'undefined'){
+//    var ctx = new AudioContext();
+//} else {
+//    var ctx = new webkitAudioContext();
+//}
+
+var offset// anl, volum= ctx.createGain();
 var tmp = 0;
 var can;
+
+
 function playable()
 {
 	info++;
@@ -15,7 +23,7 @@ function playable()
 		socket.emit('players', {ready: true,
 								room_name: location.pathname});
 
-         ;
+     /*    ;
 		 anl = ctx.createAnalyser();
 		var src = ctx.createMediaElementSource(audio);
 		src.connect(volum);
@@ -30,7 +38,7 @@ function playable()
 		lg.addColorStop(1, "white");
 		xx.fillStyle = lg;
 
-		window.ii = setInterval(function(){anl.getByteFrequencyData(data); xx.clearRect(0,0,window.innerWidth,window.innerHeight);for(var x in data){ xx.fillRect(x,window.innerHeight - data[x], 1, data[x])}}, 10)
+		window.ii = setInterval(function(){anl.getByteFrequencyData(data); xx.clearRect(0,0,window.innerWidth,window.innerHeight);for(var x in data){ xx.fillRect(x,window.innerHeight - data[x], 1, data[x])}}, 10) */
 	}
 }
 
@@ -68,14 +76,14 @@ function playClick()
 {
 	document.getElementById("play").style.display = "none";
 	document.getElementById("pause").style.display = "";
-	volum.gain.value = 1;
+	audio.volume = 1;
 }
 
 function pauseClick()
 {
 	document.getElementById("play").style.display = "";
 	document.getElementById("pause").style.display = "none";
-	volum.gain.value = 0;
+	audio.volume = 0;
 }
 
 function syncTime() {

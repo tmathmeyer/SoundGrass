@@ -20,20 +20,27 @@ exports.handle = function(socket, io){
 			radiostation.ready++;
 			
 			setTimeout(function(){
-				if (!radiostation.playing &&
-					radiostation.count == radiostation.ready){
-					
+				if (!radiostation.playing && radiostation.count == radiostation.ready){
 					console.info(radiostation.playing + ' zz ' + radiostation.count + ' '+  radiostation.ready);
 					radiostation.playing = true;
-					io.sockets.in(data.room_name).emit('players', { time: data.time, 
-			play: true,
-			stime: false });
-			}
-			else{
-				console.info("no no");
-				console.info(radiostation.playing + ' ' + radiostation.count + ' '+  radiostation.ready);
-			}
-			},10000);
+					io.sockets.in(data.room_name).emit('players', { 
+                        time: data.time, 
+			            play: true,
+			            stime: false
+                    });
+			    }
+			    else{
+				    console.info("no no");
+				    console.info(radiostation.playing + ' ' + radiostation.count + ' '+  radiostation.ready);
+                    setTimeout(function(){
+                        io.sockets.in(data.room_name).emit('players', {
+                            time: data.time,
+                            play: true,
+                            stime: false
+                        });
+                    }, 30000);
+			    }
+			},30000);
 			
 		}
 		
